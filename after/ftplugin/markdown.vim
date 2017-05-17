@@ -192,7 +192,13 @@ function! MdwiGotoLink()
       exec "normal! a(".relativepath.")"
       exec ":w"
       "Write title to the new document
-      let strCmd = 'normal!\ a'.escape(word, ' \').'\<esc>yypv$r=o\<cr>'
+      let strCmd = 'normal!\ a'
+      let strCmd .= '---'.'\r'
+      let strCmd .= 'layout: post'.'\r'
+      let strCmd .= 'author: Henrique'.'\r'
+      let strCmd .= 'category: KB'.'\r'
+      let strCmd .= 'title: '.word.'\r'
+      let strCmd .= '---'.'\r\r'
     endif
 
     let link = MdwiFilePath(relativepath)
